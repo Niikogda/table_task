@@ -1,7 +1,8 @@
 import csv
 
 FILENAME = "users.csv"
-FIELDS = ["name", "age"]
+FIELDS = ["name", "surname", "age", "occupation", "hobby", "uni"]
+
 
 def saveCSV(data, filename):
     try:
@@ -9,6 +10,7 @@ def saveCSV(data, filename):
             writer = csv.DictWriter(file, fieldnames=FIELDS)
             writer.writeheader()
             writer.writerows(data)
+            print(f"Data saved to {filename}.")
     except IOError:
         print(f"Error saving data to {filename}.")
 
@@ -30,7 +32,15 @@ def main():
     us_uni=input("enter your uni name pls-> ")
     users = [
     {"name": us_name, "surname": us_surname, "age": us_age, "occupation": us_occupation, "hobby": us_hobby, "uni": us_uni}
-]
+    ]
+    print("User information:")
+    print(f"Name: {us_name}")
+    print(f"Surname: {us_surname}")
+    print(f"Age: {us_age}")
+    print(f"Occupation: {us_occupation}")
+    print(f"Hobby: {us_hobby}")
+    print(f"University: {us_uni}")
+    
     while True:
         print('1 - save: 2 - load')
         action = input('action->')
@@ -40,6 +50,7 @@ def main():
             readCSV(FILENAME)
         else:
             print('Action not found!')
+
 
 if __name__ == "__main__":
     main()
